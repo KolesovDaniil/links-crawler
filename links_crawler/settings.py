@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'urls_crawler.urls'
+ROOT_URLCONF = 'links_crawler.urls'
 
 TEMPLATES = [
     {
