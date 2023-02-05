@@ -2,9 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Links Crawler</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
 </head>
 <body>
-
+    <div class="container">
+        <div class="row">
+            <h2>Nested Links Search</h2>
+        </div>
+        <form action="." method="post">
+            <div class="row">
+                <div class="seven columns ">
+                    <label for="{{ form.url.name }}">{{ form.url.label }}</label>
+                    {{ form.url }}
+                    <span class="help">{{ form.account.help_text }}</span>
+                    <div class="errors">{{ form.account.errors|join:', ' }}</div>
+                </div>
+            </div>
+            <div class="row">
+            {% csrf_token %}
+            <input type="submit" value="Go!">
+            </div>
+        </form>
+        {% if not initial_state %}
+            {% if links_tree_exists %}
+                {{ links_tree | safe }}
+            {% else %}
+                <h3>Start parsing url for nested links</h3>
+            {% endif %}
+        {%  endif %}
+    </div>
 </body>
 </html>

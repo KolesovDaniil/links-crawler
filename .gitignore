@@ -3,3 +3,7 @@ venv
 .env
 .bash_history
 .idea/
+.python-version
+.ipython/
+crawler/__pycache__/
+crawler/migrations/__pycache__/

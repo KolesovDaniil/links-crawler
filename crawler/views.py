@@ -1,24 +1,32 @@
-from django.views.generic.edit import FormView
+from typing import Any
+
 from django.forms import Form
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
-from .utils import get_page_links
+from django.views.generic.edit import FormView
 
 from .forms import PageUrlsForm
+from .utils import LinksCrawler, render_html_links_tree
 
 
 class LinksOnPageView(FormView):
-    template_name = 'homepage.html'
+    template_name = "homepage.html"
     form_class = PageUrlsForm
 
-    def form_valid(self, form: Form):
-        page_url = form.changed_data['url']
-        extra = {'found_links': get_page_links(page_url)}
+    def form_valid(self, form: Form) -> HttpResponse:
+        page_url = form.cleaned_data["url"]
+        crawler = LinksCrawler(page_url)
+
+        links_tree_exists, tree = crawler.get_links()
+        if links_tree_exists:
+            tree = render_html_links_tree(tree)
+        extra = {"links_tree_exists": links_tree_exists, "links_tree": tree}
 
         return render(
             self.request, self.template_name, context=self.get_context_data() | extra
         )
 
-    def _get_urls_for_page(self, page_url: str) -> list[str]:
-        """Return all urls on page including nested urls"""
-        pass
-
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpRequest:
+        return self.render_to_response(
+            self.get_context_data() | {"initial_state": True}
+        )
