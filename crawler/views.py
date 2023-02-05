@@ -18,8 +18,10 @@ class LinksOnPageView(FormView):
         crawler = LinksCrawler(page_url)
 
         links_tree_exists, tree = crawler.get_links()
+
         if links_tree_exists:
             tree = render_html_links_tree(tree)
+
         extra = {"links_tree_exists": links_tree_exists, "links_tree": tree}
 
         return render(

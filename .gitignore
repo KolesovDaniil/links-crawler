@@ -5,5 +5,8 @@ venv
 .idea/
 .python-version
 .ipython/
+__pycache__/
 crawler/__pycache__/
 crawler/migrations/__pycache__/
+links_crawler/__pycache__/
+.pytest_cache/

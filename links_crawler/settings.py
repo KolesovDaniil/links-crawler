@@ -31,7 +31,7 @@ SECRET_KEY = "django-insecure-tkg-_gkix_k(=^9i)4emz@)1ix2t1^d!i6e-h0++9*9+76x!n&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "testserver"]
 
 SECOND = 1
 MINUTE = 60 * SECOND

@@ -6,6 +6,8 @@ django-redis
 django-environ
 funcy
 pytest
+pytest-django
+pytest-mock
 redis
 requests
 ipython

@@ -94,6 +94,13 @@ pygments==2.14.0
 pymongo==4.3.3
     # via djongo
 pytest==7.2.1
+    # via
+    #   -r requirements.in
+    #   pytest-django
+    #   pytest-mock
+pytest-django==4.5.2
+    # via -r requirements.in
+pytest-mock==3.10.0
     # via -r requirements.in
 pytz==2022.7.1
     # via celery

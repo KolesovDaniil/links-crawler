@@ -57,7 +57,7 @@ class LinksCrawler:
 
     def _get_links_tree(self, page_url: str, link_level: int, parents: list) -> dict:
         redis_key = f"{settings.CACHED_LINKS_KEY_PREFIX}{page_url}"
-        page_links = redis.smembers(redis_key)  # link_level
+        page_links = redis.smembers(redis_key)
         page_links = map(lambda l: l.decode("ascii"), page_links)
         last_level = link_level + 1 > settings.NESTING_LEVEL
 
@@ -157,6 +157,9 @@ class LinksCrawler:
 
 @joining("")
 def render_html_links_tree(links_tree: dict) -> Generator:
+    if not links_tree:
+        return ""
+
     yield "<ul>"
 
     for url in links_tree.keys():

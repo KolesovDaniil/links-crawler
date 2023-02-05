@@ -1,0 +1,9 @@
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = 'links_crawler.settings'
+norecursedirs = [
+  '.mypy_cache',
+  '.pytest_cache',
+  '.ipython',
+  'venv',
+]
+python_files = ['test_*.py', 'tests.py']
